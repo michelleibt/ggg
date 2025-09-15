@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Agenda de Tarefas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 { text-align: center; color: #333; }
+    .dias {
+      display: flex; justify-content: center; gap: 5px; margin-bottom: 20px;
+    }
+    .dias button {
+      padding: 10px; border: none; border-radius: 8px;
+      background: #6200ea; color: white; cursor: pointer;
+    }
+    .dias button:hover { background: #3700b3; }
+    .tarefas {
+      max-width: 400px; margin: auto; background: white; padding: 15px;
+      border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); display: none;
+    }
+    .tarefas.ativo { display: block; }
+    .tarefa {
+      display: flex; align-items: center; justify-content: flex-start;
+      padding: 8px; border-bottom: 1px solid #eee;
+    }
+    .tarefa input { margin-right: 10px; }
+    #pontos { text-align: center; font-size: 18px; margin: 15px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+    th { background: #6200ea; color: white; }
+    .resgatar {
+      background: orange; color: white; border: none;
+      padding: 5px 10px; border-radius: 5px; cursor: pointer;
+    }
+    .resgatar:disabled { background: gray; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <h1>📅 Agenda de Tarefas</h1>
+
+  <!-- Botões dos dias -->
+  <div class="dias">
+    <button onclick="mostrar('domingo')">D</button>
+    <button onclick="mostrar('segunda')">S</button>
+    <button onclick="mostrar('terca')">T</button>
+    <button onclick="mostrar('quarta')">Q</button>
+    <button onclick="mostrar('quinta')">Q</button>
+    <button onclick="mostrar('sexta')">S</button>
+    <button onclick="mostrar('sabado')">S</button>
+  </div>
+
+  <!-- Domingo -->
+  <div class="tarefas" id="domingo">
+    <h3>Domingo</h3>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:19 🍽️ Almoço</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:40 🧼 Lavar louça</div>
+  </div>
+
+  <!-- Segunda -->
+  <div class="tarefas" id="segunda">
+    <h3>Segunda-feira</h3>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 07:20 🏫 Chegar na escola</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 12:10 🏫 Saída da escola</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:15 🏠 Chegar em casa</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:19 🍽️ Almoço</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:40 🧼 Lavar louça</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 14:00 🍲 Fazer jantar</div>
+  </div>
+
+  <!-- Terça -->
+  <div class="tarefas" id="terca">
+    <h3>Terça-feira</h3>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 07:20 🏫 Chegar na escola</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 12:10 🏫 Saída da escola</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:15 🏠 Chegar em casa</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:19 🍽️ Almoço</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:40 🧼 Lavar louça</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 14:00 🍲 Fazer jantar</div>
+  </div>
+
+  <!-- Quarta -->
+  <div class="tarefas" id="quarta">
+    <h3>Quarta-feira</h3>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 07:20 🏫 Chegar na escola</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 12:10 🏫 Saída da escola</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:15 🏠 Chegar em casa</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:19 🍽️ Almoço</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:40 🧼 Lavar louça</div>
+  </div>
+
+  <!-- Quinta -->
+  <div class="tarefas" id="quinta">
+    <h3>Quinta-feira</h3>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 07:20 🏫 Chegar na escola</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 12:10 🏫 Saída da escola</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:15 🏠 Chegar em casa</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:19 🍽️ Almoço</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:40 🧼 Lavar louça</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 11:00 🎬 Postar vídeo no YouTube</div>
+  </div>
+
+  <!-- Sexta -->
+  <div class="tarefas" id="sexta">
+    <h3>Sexta-feira</h3>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 07:20 🏫 Chegar na escola</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 12:10 🏫 Saída da escola</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:15 🏠 Chegar em casa</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:19 🍽️ Almoço</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:40 🧼 Lavar louça</div>
+  </div>
+
+  <!-- Sábado -->
+  <div class="tarefas" id="sabado">
+    <h3>Sábado</h3>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:19 🍽️ Almoço</div>
+    <div class="tarefa"><input type="checkbox" onchange="atualizarPontos(this)"> 13:40 🧼 Lavar louça</div>
+  </div>
+
+  <p id="pontos">Pontos: 0</p>
+
+  <h2>🎁 Tabela de Recompensas</h2>
+  <table>
+    <tr><th>Pontos</th><th>Recompensa</th><th>Ação</th></tr>
+    <tr><td>10</td><td>Dinheiro salgado</td><td><button class="resgatar" onclick="resgatar(10,this)" disabled>Resgatar</button></td></tr>
+    <tr><td>40</td><td>R$10</td><td><button class="resgatar" onclick="resgatar(40,this)" disabled>Resgatar</button></td></tr>
+    <tr><td>50</td><td>Ox Burguer</td><td><button class="resgatar" onclick="resgatar(50,this)" disabled>Resgatar</button></td></tr>
+  </table>
+
+  <h2>🎊 Recompensas Resgatadas</h2>
+  <ul id="historico"></ul>
+
+  <script>
+    let pontos = 0;
+
+    function mostrar(dia) {
+      document.querySelectorAll(".tarefas").forEach(div => div.classList.remove("ativo"));
+      document.getElementById(dia).classList.add("ativo");
+    }
+
+    function atualizarPontos(checkbox) {
+      if (checkbox.checked) {
+        pontos++;
+      } else {
+        pontos--;
+      }
+      document.getElementById("pontos").textContent = "Pontos: " + pontos;
+      atualizarRecompensas();
+    }
+
+    function atualizarRecompensas() {
+      document.querySelectorAll(".resgatar").forEach(botao => {
+        let custo = parseInt(botao.parentElement.parentElement.children[0].textContent);
+        botao.disabled = pontos < custo;
+      });
+    }
+
+    function resgatar(valor, btn) {
+      if (pontos >= valor) {
+        pontos -= valor;
+        document.getElementById("pontos").textContent = "Pontos: " + pontos;
+        let nome = btn.parentElement.parentElement.children[1].textContent;
+        let li = document.createElement("li");
+        li.textContent = "🎁 " + nome;
+        document.getElementById("historico").appendChild(li);
+        atualizarRecompensas();
+      }
+    }
+  </script>
+</body>
+</html>
